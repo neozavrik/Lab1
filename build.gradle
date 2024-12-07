@@ -1,0 +1,38 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.6'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// Основні залежності для Spring Boot
+	implementation 'org.springframework.boot:spring-boot-starter-web'         // Для створення REST API
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'    // Для роботи з базою даних через JPA
+	implementation 'org.springframework.boot:spring-boot-starter-validation'  // Для валідації запитів
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'   // Для роботи з шаблонами Thymeleaf
+	implementation 'com.fasterxml.jackson.core:jackson-databind'             // Для серіалізації/десеріалізації JSON
+
+	// Тестування
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'    // Для тестування
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'             // Для запуску тестів
+
+	// Для H2 бази даних
+	implementation 'com.h2database:h2:2.1.214' // Правильна версія для H2
+}
+
+tasks.named('test') {
+	useJUnitPlatform() // Для підтримки JUnit 5
+}
